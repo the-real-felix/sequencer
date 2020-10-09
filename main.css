@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Jura");
+* {
+  box-sizing: border-box;
+  margin: 0; }
+
+body {
+  background-color: black; }
+
+p {
+  background-color: black;
+  color: white;
+  font-size: 22px;
+  padding: 20px;
+  font-family: Jura; }
+
+div#app {
+  max-width: 1750px;
+  width: 100%; }
+
+div.sliderContainer {
+  position: relative; }
+  div.sliderContainer img, div.sliderContainer p {
+    width: 100%;
+    position: absolute; }
+  div.sliderContainer .fond {
+    z-index: 0; }
+  div.sliderContainer .p3 {
+    z-index: 10;
+    -webkit-animation-name: animp3;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: animp3;
+    animation-duration: 1s;
+    /* Safari 4.0 - 8.0 */
+    /* Standard syntax */ }
+
+@-webkit-keyframes animp3 {
+  from {
+    margin-top: 10px; }
+  to {
+    margin-top: 0px; } }
+
+@keyframes animp3 {
+  from {
+    margin-top: 10px; }
+  to {
+    margin-top: 0px; } }
+
+.p2 {
+  z-index: 20;
+  -webkit-animation-name: animp2;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: animp2;
+  animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  /* Standard syntax */ }
+
+@-webkit-keyframes animp2 {
+  from {
+    margin-top: 15px; }
+  to {
+    margin-top: 0px; } }
+
+@keyframes animp2 {
+  from {
+    margin-top: 15px; }
+  to {
+    margin-top: 0px; } }
+
+.p1 {
+  z-index: 30;
+  -webkit-animation-name: animp1;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: animp1;
+  animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  /* Standard syntax */ }
+
+@-webkit-keyframes animp1 {
+  from {
+    margin-top: 5px; }
+  to {
+    margin-top: 0px; } }
+
+@keyframes animp1 {
+  from {
+    margin-top: 5px; }
+  to {
+    margin-top: 0px; } }
+
+p {
+  z-index: 40;
+  -webkit-animation-name: example;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Safari 4.0 - 8.0 */
+  /* Standard syntax */ }
+
+@-webkit-keyframes example {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: -20px; }
+  to {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 0px; } }
+
+@keyframes example {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: -20px; }
+  to {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 0px; } }
+
+.noanim {
+  animation-name: none; }
+
+/*# sourceMappingURL=main.css.map */
