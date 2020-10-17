@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "name": "@fefe/sequencer",
+    "version": "1.0.0",
+    "description": "A webcomic template.",
+    "license": "ISC",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "contributors": [
+        {
+            "name": "Félix Sintes",
+            "email": "felix.sintes@gmail.com",
+            "url": "http://fefe.fr/"
+        },
+        {
+            "name": "Chauncey McAskill",
+            "email": "chauncey@mcaskill.ca",
+            "url": "https://mcaskill.ca/"
+        }
+    ],
+    "homepage": "https://github.com/the-real-felix/sequencer",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/the-real-felix/sequencer.git"
+    },
+    "bugs": {
+        "url": "https://github.com/the-real-felix/sequencer/issues"
+    }
+}
