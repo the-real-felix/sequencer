@@ -4,6 +4,9 @@
     "version": "1.0.0",
     "description": "A webcomic template.",
     "license": "ISC",
+    "dependencies": {
+        "reveal.js": "^4.1.0"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
