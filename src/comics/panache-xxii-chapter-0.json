@@ -1,0 +1,403 @@
+{
+    "version": 1,
+    "information": {
+        "collectionTitle": "Panache XXII",
+        "chapterNumber": 0,
+        "title": "Prologue"
+    },
+    "settings": {
+        "lang": "fr",
+        "width": 1920,
+        "height": 911,
+        "showFirstFragment": false
+    },
+    "slides": [
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6AN0wDCO54P_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+                {
+                    "kind": "caption",
+                    "text": "L'énergie… Depuis le début des temps, elle a nourri les rêves, les espoirs et les peurs de l'être humain… Elle a bâti des empires, façonné des mondes, son potentiel créateur n'ayant d'égal que son potentiel destructeur… Si, au XXIème siècle, la maîtrise de l'énergie a permis à l'humanité d'accomplir les plus grands progrès, le tribut à payer faillit précipiter sa chute…"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6f4naEBg7lm_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "caption",
+                    "text": "Aujourd'hui, grâce à l'avènement d'énergies plus puissantes et plus propres, le monde est entré dans un nouvel âge d'or technologique. Tandis que les cicatrices des catastrophes du siècle passé se referment peu à peu, l'essor de l'intelligence artificielle et de la robotique portent l'espoir d'un monde meilleur et d'une société plus juste."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5m2pYyWibsW_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "caption",
+                    "text": "Pourtant, certains esprits avides de pouvoir ont les yeux rivés sur une nouvelle source d'énergie… Un flux mystérieux omniprésent, qui parcourt le cosmos et traverse la matière et l'espace-temps. L'énergie noire… Disponible en quantité illimitée, elle pourrait rendre ceux qui la contrôlent maîtres de la galaxie, voire de l'univers entier…"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5tYDIzVRwQg_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "caption",
+                    "text": "Dans l'ombre, la recherche s'active… Mais qui sait ce qui peut advenir, lorsqu'on manipule des forces de cette ampleur ? Quels secrets se terrent dans les confins de l'univers ? Quel sera le prix à payer cette fois-ci ? Le monde n'est peut-être pas prêt à une telle découverte…"
+                }
+            ]
+        },
+        {
+            "description": "XXIIème siècle",
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6Ultbn7yGaw_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "description",
+                    "text": "XXIIème siècle",
+                    "align": "center",
+                    "position": "bottom"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5hJEYzbnpXt_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6Xt3QBhuV21_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6nxAjKFOobn_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6b4B1N2O4JX_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Moine",
+                    "text": "Quel est le pire ? Être fou dans une société saine d'esprit, ou être sain d'esprit dans une société qui a perdu la tête ?",
+                    "tail": {
+                        "offset": "48%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/64HEsGLt1eo_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Moine",
+                    "text": "Ils appellent cela le progrès, mais moi ce que je vois c'est un monde qui répète encore et encore les mêmes erreurs…",
+                    "tail": {
+                        "offset": "51%",
+                        "direction": "center"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/61UQzZp6FCb_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Moine",
+                    "text": "Le vrai progrès, c'est de se rapprocher de la nature. Se calquer sur son rythme, prendre le temps d'observer, de respirer… En se reconnectant avec les autres formes de vies, on trouve parfois les solutions à nos problèmes.",
+                    "tail": {
+                        "offset": "56%",
+                        "direction": "left"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6X9RlUhzPqf_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Moine",
+                    "text": "Regarde cette fleur par exemple… Elle pousse dans l'un des déserts les plus arides du monde, une zone devenue inhabitable pour l'homme. Même après des années de sécheresse, elle finit toujours par repousser… "
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6eiebGQmAe1_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Moine",
+                    "text": "Cela nous rappelle que peu importe les difficultés, même dans les pires endroits, les pires moments, la vie et la beauté peuvent exister… Tiens, elle est pour toi."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6DrFBwxBBjm_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6KymR5rRUJW_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "description",
+                    "label": "Homme",
+                    "text": "*Crac*",
+                    "position": "bottom"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/68MP6EOWhaD_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "Pauvre petite… Tu vois ? Elle n'est pas si résistante finalement. Pourquoi vénérer une chose aussi faible, incapable de se défendre par elle-même ?",
+                    "tail": {
+                        "offset": "55%",
+                        "direction": "left"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6nXHdywZP4b_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "Je n'ai pas besoin de tes leçons de morale, mon destin est déjà tracé. J'ai été choisi par les Maîtres, pour accomplir leur volonté. Mais tu es aveugle, tu ne peux pas comprendre…",
+                    "tail": {
+                        "offset": "62%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6ek39Ag1nke_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "J'ai vu le vrai pouvoir ! J'ai vu ce qu'il en coûte de s'opposer aux Maîtres ! Vous êtes tous condamnés pour l'éternité !",
+                    "tail": {
+                        "offset": "50%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5wQnABF07H3_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "Mais moi, je serai sauvé… Mon âme rejoindra le Flux et je siégerai, avec les élus, parmis les dieux !",
+                    "position": "bottom",
+                    "tail": {
+                        "offset": "33%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6GLmvUCiw2I_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "La fin est proche. Acceptez la Voie, ou soyez damnés…"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6crPrM1KKhw_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Homme",
+                    "text": "Gloire à la Nuit éternelle ! Gloire à Umbro !",
+                    "tail": {
+                        "offset": "28%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5xoJpmSnoxp_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5ojVbS0b75f_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Présentateur de nouvelles",
+                    "text": "…concernant l'explosion qui a retenti il y a une heure dans une gare centrale de Capital City, le premier bilan fait état de plusieurs morts et des dizaines de blessés. Pour l'instant, les éléments pointent la responsabilité de l'Ordre de la Nuit Eternelle, ou O.N.E, une secte récemment classée comme organisation terroriste par le Gouvernement Mondial."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/63M5gFOwVdH_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Présentateur de nouvelles",
+                    "text": "Umbro, son mystérieux leader a fait savoir qu'il \"ne se plierait jamais à la loi des mortels, car il sert des maîtres plus puissants…\". L'individu, dont la véritable identité reste inconnue et qui fait l'objet d'un mandat d'arrêt international, apparaît dans plusieurs vidéos sur le Réseau, dans lesquelles il promet l'immortalité à ceux qui acceptent de suivre la \"Voie\"…"
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6cUNfxxDdnb_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Femme #2 (message texte)",
+                    "text": "Tu as vu ça ?",
+                    "tail": {
+                        "offset": "30%",
+                        "direction": "right"
+                    }
+                },
+                {
+                    "kind": "dialogue",
+                    "label": "Femme #1 (message texte)",
+                    "text": "C'est quoi ?",
+                    "tail": {
+                        "offset": "66%",
+                        "direction": "left"
+                    }
+                },
+                {
+                    "kind": "dialogue",
+                    "label": "Femme #2 (message texte)",
+                    "text": "Le gars des attentats… Regarde !",
+                    "tail": {
+                        "offset": "30%",
+                        "direction": "right"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5yrulVZQx0C_DX3840_DY3840_CX1920_CY911.png",
+            "fragments": [
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6gsSRBWnXFL_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "Les Hommes ont toujours vénéré les étoiles, y voyant le symbole de la puissance des dieux… Mais jamais ils ne sont doutés que le vrai pouvoir ne se situait pas dans ces points lumineux minuscules, mais dans le vide infini qui les entoure… ",
+                    "tail": {
+                        "offset": "48%",
+                        "direction": "center"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5qlIIWgXZ0P_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "Les mathématiques et la physiques nous ont donné les codes pour percer le langage des Créateurs de l'Univers. J'ai été choisi pour accomplir leur volonté. Au travers de la science, ils se sont adressés à moi, afin de guider l'humanité vers la perfection."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6peuFMz6rKX_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "La fin est proche… A ceux qui soutiennent le Gouvernement Mondial, ceux qui vénèrent de faux dieux fabriqués par l'Homme, ceux qui pensent que la lumière peut les sauver… Il n'y a qu'un salut, c'est accepter la Nuit Eternelle."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6fyIA2KmsXt_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "description",
+                    "label": "Chat",
+                    "text": "*Hiss*"
+                },
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "Bientôt, nous ferons la démonstration du pouvoir que les dieux nous ont conféré… Alors, ceux qui n'auront pas accepté l'Obscurité dans leur coeur, disparaîtront dans un abîme de souffrance infinie. Les élus, eux, vivront à jamais dans le Flux, parmis les dieux, et renaîtront dans un monde meilleur."
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/6kXzLq0R2HD_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "Rejoignez la Nuit. Acceptez d'être sauvés. La fin est proche.",
+                    "tail": {
+                        "offset": "46%",
+                        "direction": "center"
+                    }
+                }
+            ]
+        },
+        {
+            "background": "http://www.fefe.fr/bd/chap0/mobile/5oW4e4J2OK5_DX3840_DY3840_CX1920_CY911.png",
+            "showFirstFragment": true,
+            "fragments": [
+                {
+                    "kind": "dialogue",
+                    "label": "Umbro (lecture vidéo)",
+                    "text": "La fin est proche…"
+                }
+            ]
+        },
+        {
+            "foreground": {
+                "text": "Fin du prologue"
+            }
+        }
+    ]
+}

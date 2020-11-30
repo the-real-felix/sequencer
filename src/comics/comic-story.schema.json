@@ -1,0 +1,290 @@
+{
+    "$id": "https://fefe.fr/comic-story.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Comic Story",
+    "description": "A narrative using still images combined with text.",
+    "type": "object",
+    "required": [
+        "version",
+        "information",
+        "settings",
+        "slides"
+    ],
+    "properties": {
+        "version": {
+            "description": "An integer representing the semantics used in the document.",
+            "type": "integer",
+            "minimum": 1
+        },
+        "information": {
+            "description": "A summary of the story.",
+            "type": "object",
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "title": {
+                    "description": "The name of this story or chapter.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description of this story or chapter.",
+                    "type": "string"
+                },
+                "collectionTitle": {
+                    "description": "The name of the series or collection of stories.",
+                    "type": "string"
+                },
+                "chapterNumber": {
+                    "description": "The position of this chapter in a series or collection of stories.",
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "settings": {
+            "description": "The configuration options of Reveal.js.",
+            "type": "object",
+            "required": [
+                "lang",
+                "width",
+                "height"
+            ],
+            "properties": {
+                "lang": {
+                    "description": "The language of the majority of the content. A \"language tag\" according to BCP47.",
+                    "type": "string"
+                },
+                "width": {
+                    "description": "The width of the presentation in pixels (integer) or percentage units (string).",
+                    "oneOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    ]
+                },
+                "height": {
+                    "description": "The height of the presentation in pixels (integer) or percentage units (string).",
+                    "oneOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    ]
+                },
+                "showFirstFragment": {
+                    "description": "Whether to show the first fragment upon entering a slide.",
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "additionalProperties": true
+        },
+        "slides": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/slide"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "length-percentage": {
+            "type": "string",
+            "pattern": "^-?[\\d\\.]+%$"
+        },
+        "image-uri": {
+            "type": "string",
+            "format": "uri"
+        },
+        "slide": {
+            "description": "A slide, or section, represents a single page of your narrative.",
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "The alternative text description of the image.",
+                    "type": "string"
+                },
+                "background": {
+                    "$ref": "#/definitions/background"
+                },
+                "foreground": {
+                    "$ref": "#/definitions/foreground"
+                },
+                "fragments": {
+                    "description": "Fragments are used to highlight or incrementally reveal individual elements on a slide.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fragment"
+                    }
+                },
+                "showFirstFragment": {
+                    "description": "Whether to show the first fragment upon entering the slide.",
+                    "type": [
+                        "null",
+                        "boolean"
+                    ],
+                    "default": null
+                }
+            }
+        },
+        "fragment": {
+            "description": "A fragment usually represents captions or dialogue. The text fragment can be specified using a string.",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "text"
+                    ],
+                    "properties": {
+                        "kind": {
+                            "description": "The type of fragment: \"dialogue\" provides a tail that should point to a character; \"caption\" represents location, time, speech, narration, or editorial; \"description\" represents textual alternative of the image, suitable for users who are blind. If omitted the default kind is \"caption\".",
+                            "type": "string",
+                            "default": "caption",
+                            "enum": [
+                                "dialogue",
+                                "caption",
+                                "description"
+                            ]
+                        },
+                        "label": {
+                            "description": "The label of the fragment such as the character that is speaking.",
+                            "type": "string"
+                        },
+                        "text": {
+                            "description": "The text of the fragment.",
+                            "type": "string"
+                        },
+                        "lang": {
+                            "description": "The language of the fragment, if different from the global attribute. A \"language tag\" according to BCP47.",
+                            "type": "string"
+                        },
+                        "align": {
+                            "description": "The alignment of the text of the fragment. If omitted the default alignment is \"left\".",
+                            "type": "string",
+                            "default": "left",
+                            "enum": [
+                                "left",
+                                "center",
+                                "right"
+                            ]
+                        },
+                        "tail": {
+                            "$ref": "#/definitions/dialogue-tail"
+                        },
+                        "position": {
+                            "description": "The location of the fragment: \"top\" positions the fragment above the image; \"bottom\" positions the fragment below the image. If omitted the default kind is \"top\".",
+                            "oneOf": [
+                                {
+                                    "type": "null"
+                                },
+                                {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "dialogue-tail": {
+            "description": "Optional. The tail points from the fragment to a character in pixels (integer) or percentage units (string).",
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "offset"
+                    ],
+                    "properties": {
+                        "offset": {
+                            "description": "A length or a percentage describing how far from the left edge of the frame the tail is set.",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "direction": {
+                            "description": "The direction the tail points.",
+                            "type": "string",
+                            "default": "left",
+                            "enum": [
+                                "left",
+                                "center",
+                                "right"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "background": {
+            "description": "The background of your slide. The background image represents the primary image of your slide. An image can be specified using a string. A stack of multiple images can be animated when the slide opens.",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/image-uri"
+                },
+                {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/image-uri"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "color": {
+                            "description": "All CSS color formats are supported, including hex values, keywords, `rgba()` or `hsl()`.",
+                            "type": "string"
+                        },
+                        "image": {
+                            "description": "URL of the image to show. GIFs restart when the slide opens.",
+                            "$ref": "#/definitions/image-uri"
+                        },
+                        "images": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "#/definitions/image-uri"
+                            }
+                        }
+                    },
+                    "not": {
+                        "required": [
+                            "images",
+                            "image"
+                        ]
+                    }
+                }
+            ]
+        },
+        "foreground": {
+            "description": "The foreground of your slide. The text can be specified using a string.",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "text"
+                    ],
+                    "properties": {
+                        "text": {
+                            "description": "The text of the foreground.",
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
