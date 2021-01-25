@@ -1,0 +1,11 @@
+---
+permalink: /
+layout: base
+eleventyNavigation:
+    key: Home
+---
+<div class="container">
+    <h1>A blank 11ty project.</h1>
+
+    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+</div>
