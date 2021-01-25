@@ -1,0 +1,10 @@
+---
+layout: base
+eleventyNavigation:
+    key: Panache XXII
+---
+<div class="container">
+    <h1>{{ seriesTitle }}</h1>
+
+    {{ collections.all | eleventyNavigation(eleventyNavigation.key) | eleventyNavigationToHtml | safe }}
+</div>
