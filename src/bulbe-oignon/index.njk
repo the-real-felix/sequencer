@@ -1,0 +1,10 @@
+---
+layout: base
+eleventyNavigation:
+    key: Bulbe Oignon
+---
+<div class="container">
+    <h1>{{ seriesTitle }}</h1>
+
+    {{ collections.all | eleventyNavigation(eleventyNavigation.key) | eleventyNavigationToHtml | safe }}
+</div>
