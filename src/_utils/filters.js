@@ -1,9 +1,35 @@
 const {
-    isObject,
     composeHtmlAttribute,
     composeHtmlAttributes,
 } = require('./helpers.js');
 
+const {
+    isNil,
+    isPlainObject,
+} = require('lodash');
+
+const SLIDE_TRANSITION_SPEED_DEFAULT = 'default';
+const SLIDE_TRANSITION_SPEED_FAST    = 'fast';
+const SLIDE_TRANSITION_SPEED_SLOW    = 'slow';
+const SLIDE_TRANSITION_SPEEDS        = [
+    SLIDE_TRANSITION_SPEED_DEFAULT,
+    SLIDE_TRANSITION_SPEED_FAST,
+    SLIDE_TRANSITION_SPEED_SLOW,
+];
+const SLIDE_TRANSITION_STYLE_NONE    = 'none';
+const SLIDE_TRANSITION_STYLE_FADE    = 'fade';
+const SLIDE_TRANSITION_STYLE_SLIDE   = 'slide';
+const SLIDE_TRANSITION_STYLE_CONVEX  = 'convex';
+const SLIDE_TRANSITION_STYLE_CONCAVE = 'concave';
+const SLIDE_TRANSITION_STYLE_ZOOM    = 'zoom';
+const SLIDE_TRANSITION_STYLES        = [
+    SLIDE_TRANSITION_STYLE_NONE,
+    SLIDE_TRANSITION_STYLE_FADE,
+    SLIDE_TRANSITION_STYLE_SLIDE,
+    SLIDE_TRANSITION_STYLE_CONVEX,
+    SLIDE_TRANSITION_STYLE_CONCAVE,
+    SLIDE_TRANSITION_STYLE_ZOOM,
+];
 const FRAGMENT_KIND_DIALOGUE     = 'dialogue';
 const FRAGMENT_KIND_CAPTION      = 'caption';
 const FRAGMENT_KIND_DESCRIPTION  = 'description';
@@ -36,14 +62,30 @@ const FRAGMENT_TAIL_DIRECTIONS   = [
 ];
 
 /**
- * @param  {mixed}  input - Global settings.
+ * The context of the iteration.
+ *
+ * @typedef  Loop
+ * @type     {object}
+ * @memberof {Nunjucks}
+ * @property {number}  index     - The current iteration of the loop (1 indexed).
+ * @property {number}  index0    - The current iteration of the loop (0 indexed).
+ * @property {number}  revindex  - Number of iterations until the end (1 indexed).
+ * @property {number}  revindex0 - Number of iterations until the end (0 based).
+ * @property {boolean} first     - Boolean indicating the first iteration.
+ * @property {boolean} last      - Boolean indicating the last iteration.
+ * @property {boolean} length    - Total number of items.
+ */
+
+/**
+ * @param  {mixed}  input      - Global settings.
+ * @param  {Object} [defaults] - Alternative default settings.
  * @return {Object}
  */
-function parseDeckSettings(input) {
-    const data = {
+function parseDeckSettings(input, defaults) {
+    const data = defaults || {
         // Transition
-        transition: 'fade',
-        transitionSpeed: 'fast',
+        transition: SLIDE_TRANSITION_STYLE_NONE,
+        transitionSpeed: SLIDE_TRANSITION_SPEED_FAST,
 
         // Presentation Size
         embedded: true,
@@ -55,7 +97,7 @@ function parseDeckSettings(input) {
         fragmentPosition: FRAGMENT_POSITION_TOP,
     };
 
-    if (!isObject(input)) {
+    if (!isPlainObject(input)) {
         return data;
     }
 
@@ -85,6 +127,8 @@ function parseSlide(input, settings) {
         foreground:        null,
         fragments:         [],
         showFirstFragment: null,
+        transition:        null,
+        transitionSpeed:   null,
     };
 
     if (!input) {
@@ -98,26 +142,56 @@ function parseSlide(input, settings) {
     if (
         typeof input.background === 'string' ||
         Array.isArray(input.background) ||
-        isObject(input.background)
+        isPlainObject(input.background)
     ) {
-        data.background = input.background;
+        data.background = parseSlideBackground(input.background);
     }
 
     if (
         typeof input.foreground === 'string' ||
-        isObject(input.foreground)
+        isPlainObject(input.foreground)
     ) {
-        data.foreground = input.foreground;
+        data.foreground = parseSlideForeground(input.foreground);
     }
 
     if (Array.isArray(input.fragments)) {
-        data.fragments = input.fragments;
+        data.fragments = input.fragments.map(parseSlideFragment);
     }
 
     if (typeof input.showFirstFragment === 'boolean') {
         data.showFirstFragment = input.showFirstFragment;
     } else if (settings && (typeof settings.showFirstFragment === 'boolean')) {
         data.showFirstFragment = settings.showFirstFragment;
+    }
+
+    if (typeof input.transition === 'string') {
+        input.transition = input.transition.split(/\s+/).slice(0, 2);
+    }
+
+    if (Array.isArray(input.transition)) {
+        let filterTransition;
+
+        if (input.transition.length === 2) {
+            const styles = SLIDE_TRANSITION_STYLES.join('|');
+            const regex  = new RegExp(`^(${styles})(-(in|out))?$`);
+
+            filterTransition = (transition) => {
+                return regex.test(transition);
+            };
+        } else {
+            filterTransition = (transition) => {
+                return SLIDE_TRANSITION_STYLES.includes(transition);
+            };
+        }
+
+        data.transition = input.transition.filter(filterTransition).join(' ');
+    }
+
+    if (
+        (typeof input.transitionSpeed === 'string') &&
+        SLIDE_TRANSITION_SPEEDS.includes(input.transitionSpeed)
+    ) {
+        data.transitionSpeed = input.transitionSpeed;
     }
 
     return data;
@@ -148,7 +222,7 @@ function parseSlideBackground(input, settings) {
         return data;
     }
 
-    if (!isObject(input)) {
+    if (!isPlainObject(input)) {
         return data;
     }
 
@@ -187,7 +261,7 @@ function parseSlideForeground(input, settings) {
         return data;
     }
 
-    if (!isObject(input)) {
+    if (!isPlainObject(input)) {
         return data;
     }
 
@@ -230,33 +304,33 @@ function parseSlideFragment(input, settings) {
         return data;
     }
 
-    if (!isObject(input)) {
+    if (!isPlainObject(input)) {
         return data;
     }
 
     if (
         (typeof input.kind === 'string') &&
-        (FRAGMENT_KINDS.indexOf(input.kind) > -1)
+        FRAGMENT_KINDS.includes(input.kind)
     ) {
         data.kind = input.kind;
     }
 
     if (
         (typeof input.align === 'string') &&
-        (FRAGMENT_TEXT_ALIGNMENTS.indexOf(input.align) > -1)
+        FRAGMENT_TEXT_ALIGNMENTS.includes(input.align)
     ) {
         data.align = input.align;
     }
 
     if (
         (typeof input.position === 'string') &&
-        (FRAGMENT_POSITIONS.indexOf(input.position) > -1)
+        FRAGMENT_POSITIONS.includes(input.position)
     ) {
         data.position = input.position;
     }
 
     if (data.kind === FRAGMENT_KIND_DIALOGUE) {
-        if (!isObject(input.tail)) {
+        if (!isPlainObject(input.tail)) {
             input.tail = {
                 offset: input.tail,
             };
@@ -271,7 +345,7 @@ function parseSlideFragment(input, settings) {
 
         if (
             (typeof input.tail.direction === 'string') &&
-            (FRAGMENT_TAIL_DIRECTIONS.indexOf(input.tail.direction) > -1)
+            FRAGMENT_TAIL_DIRECTIONS.includes(input.tail.direction)
         ) {
             data.tail.direction = input.tail.direction;
         }
@@ -296,7 +370,7 @@ function parseSlideFragment(input, settings) {
 }
 
 /**
- * @param  {number} index      - The fragment index.
+ * @param  {number} index      - The fragment index (0 indexed).
  * @param  {Object} slide      - The current slide.
  * @param  {Object} [settings] - The global settings.
  * @return {boolean}
@@ -306,25 +380,109 @@ function showSlideFragment(index, slide, settings) {
 }
 
 /**
- * @param  {Object} fragment   - The current fragment.
- * @param  {number} [index]    - The current fragment index.
+ * @param  {Object} slide      - The current slide.
+ * @param  {Loop}   [loop]     - The context of the iteration.
+ * @param  {Object} [settings] - The global settings.
+ * @return {?string}
+ */
+function composeHtmlAttributesForSlide(slide, loop, settings) {
+    const attributes = {
+        'class': [],
+    };
+
+    if (slide.transition) {
+        attributes['data-transition'] = slide.transition;
+    }
+
+    if (slide.transitionSpeed) {
+        attributes['data-transition-speed'] = slide.transitionSpeed;
+    }
+
+    if (slide?.background?.color) {
+        attributes['data-transition-speed'] = slide.background.color;
+    }
+
+    if (loop.index) {
+        attributes['aria-label'] = `Page ${loop.index}`;
+    }
+
+    return composeHtmlAttributes(attributes);
+}
+
+/**
+ * @param  {Object} slide      - The current slide.
+ * @param  {Object} [settings] - The global settings.
+ * @return {?string}
+ */
+function composeHtmlAttributesForSlideBackground(slide, settings) {
+    const attributes = {
+        'class': [
+            'panel-artwork',
+            'r-stack',
+        ],
+        'role': 'img',
+    };
+
+    if (slide.description) {
+        attributes['aria-label'] = slide.description;
+    }
+
+    return composeHtmlAttributes(attributes);
+}
+
+/**
+ * @param  {string} image      - The current image path.
  * @param  {Object} [slide]    - The current slide.
  * @param  {Object} [settings] - The global settings.
  * @return {?string}
  */
-function composeSlideFragmentAttributes(fragment, index, slide, settings) {
-    const hasIndex = (typeof index === 'number');
+function composeHtmlAttributesForSlideBackgroundImage(image, slide, settings) {
+    if (!image) {
+        return null;
+    }
+
+    const attributes = {
+        'class':   [ 'panel-artwork-layer' ],
+        'role':    'presentation',
+        'loading': 'lazy',
+        'src':     image,
+        'alt':     '',
+    };
+
+    if (settings.width) {
+        attributes['width'] = settings.width;
+    }
+
+    if (settings.height) {
+        attributes['height'] = settings.height;
+    }
+
+    return composeHtmlAttributes(attributes);
+}
+
+/**
+ * @param  {Object} fragment   - The current fragment.
+ * @param  {Loop}   [loop]     - The context of the iteration.
+ * @param  {Object} [slide]    - The current slide.
+ * @param  {Object} [settings] - The global settings.
+ * @return {?string}
+ */
+function composeHtmlAttributesForSlideFragment(fragment, loop, slide, settings) {
+    const hasIndex = (typeof loop === 'object') && (typeof loop.index0 === 'number');
     const hasSlide = (typeof slide === 'object');
 
-    const showFragment = hasIndex && hasSlide && showSlideFragment(index, slide, settings);
+    const showFragment = hasIndex && hasSlide && showSlideFragment(loop.index0, slide, settings);
 
     const attributes = {
         'class': [
             'panel-caption',
             'panel-caption--wide',
-            `panel-caption--${fragment.position}`,
         ],
     };
+
+    if (fragment.position) {
+        attributes['class'].push(`panel-caption--${fragment.position}`);
+    }
 
     if (fragment.align) {
         attributes['class'].push(`text-${fragment.align}`);
@@ -349,7 +507,7 @@ function composeSlideFragmentAttributes(fragment, index, slide, settings) {
              * display the first fragment on changing slides
              * and to fade between fragments.
              */
-            switch (index) {
+            switch (loop.index0) {
                 case 0:
                     attributes['class'].push('fade-out');
                     break;
@@ -377,7 +535,11 @@ function composeSlideFragmentAttributes(fragment, index, slide, settings) {
  * @param  {Object} [settings] - The global settings.
  * @return {?string}
  */
-function composeSlideFragmentTailAttributes(tail, fragment, settings) {
+function composeHtmlAttributesForSlideFragmentTail(tail, fragment, settings) {
+    if ( ! tail.direction || isNil(tail.offset) ) {
+        return null;
+    }
+
     const attributes = {
         'role': 'presentation',
         'class': [
@@ -397,6 +559,9 @@ module.exports = {
     parseSlideForeground,
     parseSlideFragment,
     showSlideFragment,
-    composeSlideFragmentAttributes,
-    composeSlideFragmentTailAttributes,
+    composeHtmlAttributesForSlide,
+    composeHtmlAttributesForSlideBackground,
+    composeHtmlAttributesForSlideBackgroundImage,
+    composeHtmlAttributesForSlideFragment,
+    composeHtmlAttributesForSlideFragmentTail,
 };

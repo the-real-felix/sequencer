@@ -51,6 +51,8 @@ module.exports = function (config) {
     config.addPassthroughCopy('src/**/images/**/*.gif');
     config.addPassthroughCopy('src/**/images/**/*.jpg');
     config.addPassthroughCopy('src/**/images/**/*.png');
+    config.addPassthroughCopy('src/**/script.js');
+    config.addPassthroughCopy('src/**/style.css');
 
     // Deep-Merge
     config.setDataDeepMerge(true);

@@ -2,17 +2,11 @@
  * @file Common helpers.
  */
 
-/**
- * Determines whether the passed value is an `Object`.
- *
- * @link    https://github.com/jonschlinkert/is-plain-object
- * @author  Jon Schlinkert.
- * @license MIT
- * @return  {boolean}
- */
-function isObject(o) {
-    return Object.prototype.toString.call(o) === '[object Object]';
-}
+const {
+    isEmpty,
+    isNil,
+    isString,
+} = require('lodash');
 
 /**
  * @link   https://github.com/JedWatson/classnames
@@ -65,10 +59,18 @@ function composeTokenList() {
 function composeHtmlAttribute(name, value, condition) {
     if (typeof condition === 'undefined') {
         condition = value;
+
+        if (isNil(condition)) {
+            condition = false;
+        } else if (isFinite(condition)) {
+            condition = true;
+        } else if (isString(condition)) {
+            condition = true;
+        }
     }
 
     if (condition) {
-        if ((typeof value === 'boolean') || value === null) {
+        if (typeof value === 'boolean') {
             return ` ${name}`;
         } else {
             value = composeTokenList(value);
@@ -112,7 +114,6 @@ function composeHtmlClassAttribute() {
 }
 
 module.exports = {
-    isObject,
     composeTokenList,
     composeHtmlAttribute,
     composeHtmlAttributes,

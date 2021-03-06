@@ -16,11 +16,11 @@ npm install
 
 ### Production
 
-Upload the contents of the `public` directory to your web server or point your document root to it.
+Upload the contents of the `dist` directory to your web server or point your document root to it.
 
 ## Usage
 
-- `npx @11ty/eleventy` — Searches the current directory and subdirectories and compiles any input template files into the output folder.
+- `npx @11ty/eleventy` — Searches the input `src` directory and compiles any input template files into the ouput `dist` directory.
 - `npx @11ty/eleventy --watch` — Automatically runs when input template files change. Useful if you have your own web server.
 - `npx @11ty/eleventy --serve` — Boots up a Browsersync web server at `http://localhost:8080/` to apply changes (using `--watch`) and refresh automatically.
 
@@ -73,6 +73,8 @@ comix/
 - `seriesTitle` — Optional. The name of the series or collection of stories.
 - `chapterTitle` — Optional. The name of this story or chapter.
 - `chapterNumber` — Optional. The position of this chapter in a series or collection of stories.
+- `revealTheme` — Optional. The stylesheet for [reveal.js].
+  See [reveal.js website](https://revealjs.com/themes/) for available themes.
 - `revealSettings` — Required. The configuration options of [reveal.js].
   - `width` — Required. The width of the presentation (image) in pixels.
   - `height` — Required. The height of the presentation (image) in pixels.
@@ -88,6 +90,7 @@ comix/
   "seriesTitle": "Foobar",
   "chapterTitle": "Xyzzy",
   "chapterNumber": 0,
+  "revealTheme": "moon",
   "revealSettings": {
     "lang": "fr",
     "width": 1750,
@@ -107,10 +110,17 @@ comix/
 #### Slides
 
 - `description` — Optional. The alternative text description of the image.
-- `background` — Optional. Zero or more background images.
-- `foreground` — Optional. Content centered over your slide.
+- `background` — Optional. A full page color, zero or more background images.
+  - `color` — Optional. A CSS color format, including hex values, keywords, `rgba()`, or `hsl()`.
+  - `image` — Optional. The relative file path to the background image.
+  - `images` — Optional. An array of relative file paths to one or more background images.
+- `foreground` — Optional. Text centered over your slide.
+  - `text` — Optional. Text centered over your slide.
 - `fragments` — Optional. Zero or more incrementally revealed captions and dialogue.
 - `showFirstFragment` — Optional. Whether to show the first fragment upon entering a slide, if different from the global attribute.
+- `transition` — Optional. The transition style. If omitted the default style is `none`.
+  You can also use different in and out transitions for the same slide by appending `-in` or `-out` to the transition name.
+- `transitionSpeed` — Optional. The transition speed. If omitted the default style is `fast`.
 
 ```json
 {
@@ -122,7 +132,17 @@ comix/
       "kind": "caption",
       "text": "Eadem nunc mea adversum…"
     }
-  ]
+  ],
+  "transition": "fade",
+  "transitionSpeed": "slow"
+},
+{
+  "background": "…/02.png",
+  "transition": [
+    "slide-in",
+    "fade-out"
+  ],
+  "transitionSpeed": "default"
 }
 ```
 

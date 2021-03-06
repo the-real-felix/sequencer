@@ -1,12 +1,12 @@
 ---
-settings:
+defaultRevealSettings:
     # Transition
-    transition: fade
+    backgroundTransition: none
+    transition: none
     transitionSpeed: fast
 
     # Presentation Size
     embedded: true
-    #center: false
     margin: 0
 
     # Fragment
@@ -17,36 +17,33 @@ settings:
 
 {% block content %}
     {% if slides | length %}
-        {% set settings = revealSettings %}
+        {% set settings = revealSettings | parseDeckSettings(defaultRevealSettings) %}
         <main id="c-reveal" class="reveal">
             <div id="c-slider" class="slides">
                 {% for slide in slides %}
                     {% set slide = slide | parseSlide(settings) %}
-                    {% set background = slide.background | parseSlideBackground(settings) %}
-                    {% set foreground = slide.foreground | parseSlideBackground(settings) %}
-                    <section{{ html.attr('data-background-color', background.color) | safe }} aria-label="Page {{ loop.index }}">
-                        {% if background.images | length %}
-                            <div class="panel-artwork r-stack" role="img"{{ html.attr('aria-label', slide.description) | safe }}>
-                                {%- for image in background.images %}
-                                    <img class="panel-artwork-layer" role="presentation" loading="lazy" src="{{ image | url }}" alt="" width="{{ settings.width }}" height="{{ settings.height }}">
+                    <section{{ slide | composeHtmlAttributesForSlide(loop, settings) | safe }}>
+                        {% if slide.background.images | length %}
+                            <div{{ slide | composeHtmlAttributesForSlideBackground(settings) | safe }}>
+                                {%- for image in slide.background.images %}
+                                    <img{{ image | url | composeHtmlAttributesForSlideBackgroundImage(slide, settings) | safe }}>
                                 {%- endfor %}
                             </div>
                         {%- endif %}
                         {% if slide.fragments | length %}
                             <div class="panel-captions">
                                 {%- for fragment in slide.fragments %}
-                                    {% set fragment = fragment | parseSlideFragment(settings) %}
-                                    <div{{ fragment | composeSlideFragmentAttributes(loop.index0, slide, settings) | safe }}>
+                                    <div{{ fragment | composeHtmlAttributesForSlideFragment(loop, slide, settings) | safe }}>
                                         <p>{{ fragment.text | safe }}</p>
                                         {% if fragment.tail.offset and fragment.tail.direction %}
-                                            <span{{ fragment.tail | composeSlideFragmentTailAttributes(fragment, settings) | safe }}></span>
+                                            <span{{ fragment.tail | composeHtmlAttributesForSlideFragmentTail(fragment, settings) | safe }}></span>
                                         {% endif %}
                                     </div>
                                 {%- endfor %}
                             </div>
                         {%- endif %}
-                        {% if foreground.text %}
-                            <p>{{ foreground.text | safe }}</p>
+                        {% if slide.foreground.text %}
+                            <p>{{ slide.foreground.text | safe }}</p>
                         {%- endif %}
                     </section>
                 {% endfor %}
@@ -54,7 +51,7 @@ settings:
         </main>
 
         <script id="c-reveal-settings" type="application/json">
-            {{ revealSettings | dump | safe }}
+            {{ settings | dump | safe }}
         </script>
     {% else %}
         <main tabindex="-1">
@@ -66,7 +63,7 @@ settings:
 {% block head %}
     {% if slides | length %}
         <link rel="stylesheet" href="{{ '/assets/reveal/reveal.css' | url }}">
-        <link rel="stylesheet" href="{{ '/assets/reveal/theme/black.css' | url }}">
+        <link rel="stylesheet" href="{{ '/assets/reveal/theme/' + ( revealTheme | default('black') ) + '.css' | url }}">
         <link rel="stylesheet" href="{{ '/assets/styles/comic.css' | url }}">
     {% endif %}
 {% endblock %}
