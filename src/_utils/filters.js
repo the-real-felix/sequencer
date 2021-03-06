@@ -509,10 +509,12 @@ function composeHtmlAttributesForSlideFragment(fragment, loop, slide, settings) 
              */
             switch (loop.index0) {
                 case 0:
+                    attributes['class'].push('first-visible');
                     attributes['class'].push('fade-out');
                     break;
                 case 1:
-                    attributes['class'].push('current-visible');
+                    attributes['class'].push('fade-down');
+                    attributes['class'].push('fade-in-then-out');
                     break;
             }
         } else {
@@ -520,9 +522,12 @@ function composeHtmlAttributesForSlideFragment(fragment, loop, slide, settings) 
             attributes['class'].push('fade-in-then-out');
         }
     } else {
-        if (!showFragment) {
+        if (showFragment) {
+            attributes['class'].push('first-visible');
+        } else {
             attributes['class'].push('fragment');
             attributes['class'].push('fade-down');
+            attributes['class'].push('fade-in-then-out');
         }
     }
 

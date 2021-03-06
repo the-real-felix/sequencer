@@ -40,6 +40,10 @@ body {
     max-height: 100%;
 }
 
+.reveal .slides {
+    overflow: hidden;
+}
+
 .reveal .slides section .fragment.fade-down-then-out {
     opacity: 0;
     visibility: hidden;
@@ -49,6 +53,38 @@ body {
     opacity: 1;
     visibility: inherit;
 }
+
+.reveal .slides section:not(.present) .panel-caption--bottom.first-visible,
+.reveal .slides section .panel-caption--bottom.fragment.fade-down {
+    transform: translate(0, 40px);
+}
+
+.reveal .slides section.present .panel-caption--bottom.first-visible,
+.reveal .slides section .panel-caption--bottom.fragment.fade-down.visible {
+    transform: translate(0, 0);
+}
+
+/**#@+ Same style as .fragment and .fragment.fade-down */
+.reveal .slides section .first-visible:not(.fragment) {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s ease;
+    will-change: opacity;
+}
+
+.reveal .slides section.present .first-visible:not(.fragment) {
+    opacity: 1;
+    visibility: inherit;
+}
+
+.reveal .slides section:not(.present) .first-visible {
+    transform: translate(0, -40px);
+}
+
+.reveal .slides section.present .first-visible {
+    transform: translate(0, 0);
+}
+/**#@-*/
 
 .reveal .panel-caption {
     padding: 0.8em 0.5em 0.8em;
