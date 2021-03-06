@@ -20,7 +20,7 @@
     window.addEventListener('load', () => {
         try {
             if (!Reveal) {
-                throw new Error('Reveal.js is missing')
+                throw new Error('Reveal.js is missing');
             }
 
             const settings = getDeckSettingsFromScript();
