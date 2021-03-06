@@ -1,0 +1,19 @@
+:root {
+    --link-color: white;
+}
+
+.reveal a {
+    color: var(--link-color);
+}
+
+.reveal a:hover .r-frame {
+    border-color: var(--link-color);
+}
+
+.reveal .controls {
+    color: var(--link-color);
+}
+
+.reveal .progress {
+    color: var(--link-color);
+}

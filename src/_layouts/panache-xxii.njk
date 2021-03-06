@@ -1,0 +1,8 @@
+{% extends '../_layouts/comic.njk' %}
+
+{% block head %}
+    {{ super() }}
+    {% if slides | length %}
+        <link rel="stylesheet" href="{{ '/panache-xxii/style.css' | url }}">
+    {% endif %}
+{% endblock %}
